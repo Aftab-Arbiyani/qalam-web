@@ -1,0 +1,73 @@
+rules_version = '2';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Qalam marketing site — Firestore security rules
+//
+// Threat model: the client SDK is fully public; anyone can call it with our
+// (public) config. These rules are the ONLY real enforcement layer.
+//
+// Strategy per collection:
+//   • create-only: nobody can read, update or delete from the web.
+//   • Strict schema: exact key set, types, sizes, enum values.
+//   • createdAt must be request.time (i.e. serverTimestamp()) — no backdating.
+//   • Duplicate prevention: doc IDs are sha256(email); a repeat signup targets
+//     the same ID, becomes an update, and is denied. The client shows
+//     "already on the list" — without being able to enumerate emails.
+//   • Doc ID must be a 64-char hex string (blocks junk IDs / path abuse).
+// ─────────────────────────────────────────────────────────────────────────────
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSha256Hex(id) {
+      return id.matches('^[a-f0-9]{64}$');
+    }
+
+    function validEmail(email) {
+      return email is string
+        && email.size() >= 6
+        && email.size() <= 254
+        && email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
+        && email == email.lower();
+    }
+
+    function validSource(source) {
+      return source is string && source.size() >= 1 && source.size() <= 120;
+    }
+
+    // ── Waitlist ────────────────────────────────────────────────────────────
+    match /waitlist/{entryId} {
+      allow read, update, delete: if false;
+
+      allow create: if isSha256Hex(entryId)
+        && request.resource.data.keys().hasOnly(['email', 'name', 'interest', 'createdAt', 'source', 'status'])
+        && request.resource.data.keys().hasAll(['email', 'name', 'interest', 'createdAt', 'source', 'status'])
+        && validEmail(request.resource.data.email)
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 1
+        && request.resource.data.name.size() <= 80
+        && request.resource.data.interest in ['writing', 'reading', 'both']
+        && request.resource.data.createdAt == request.time
+        && validSource(request.resource.data.source)
+        && request.resource.data.status == 'pending';
+    }
+
+    // ── Newsletter ──────────────────────────────────────────────────────────
+    match /newsletter/{entryId} {
+      allow read, update, delete: if false;
+
+      allow create: if isSha256Hex(entryId)
+        && request.resource.data.keys().hasOnly(['email', 'createdAt', 'source', 'status'])
+        && request.resource.data.keys().hasAll(['email', 'createdAt', 'source', 'status'])
+        && validEmail(request.resource.data.email)
+        && request.resource.data.createdAt == request.time
+        && validSource(request.resource.data.source)
+        && request.resource.data.status == 'subscribed';
+    }
+
+    // ── Everything else: locked ─────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
