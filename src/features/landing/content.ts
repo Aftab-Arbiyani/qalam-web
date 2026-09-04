@@ -163,7 +163,7 @@ export const faq = {
     {
       question: "Does the AI write for me?",
       answer:
-        "No — and that's a promise, not a limitation. Qalam's companion reads your draft like a thoughtful editor: it points at rhythm, clarity, and structure, and asks questions. The words on the page are always yours.",
+        "No — and that's a promise, not a limitation. It won't draft for you, finish your sentence, or hand you an opening line. What it does is read your draft like a thoughtful editor: it points at rhythm, clarity and structure, and asks the questions a good editor asks. Ask it to tighten a paragraph you've already written and it will show you a tighter one, beside your words, to take or leave. Nothing reaches the page unless you put it there.",
     },
     {
       question: "Who owns what I write?",

@@ -67,6 +67,7 @@ const PHASES: readonly Phase[] = [
     items: [
       "iOS & Android apps — the same care on every screen",
       "Collections and serials — work that unfolds over time",
+      "Story Map — the people, places and threads of a long work, drawn from the draft itself",
       "A writer's desk — readers, returns and resonance, in service of craft",
       "Fair, transparent supporter tools — writers paid without paywalls-by-ambush",
     ],
