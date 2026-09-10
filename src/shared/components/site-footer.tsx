@@ -29,7 +29,7 @@ export function SiteFooter() {
             <UmberleafWordmark />
             <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
               {siteConfig.tagline}. An <span className="font-display italic">umber leaf</span> is an
-              autumn leaf — and a leaf is a page.
+              autumn leaf, and a leaf is a page.
             </p>
           </div>
 

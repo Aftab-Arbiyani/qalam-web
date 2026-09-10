@@ -25,15 +25,15 @@ export default function TermsPage() {
 
           <p>
             These terms cover the {siteConfig.name} pre-launch website at{" "}
-            <a href={siteConfig.url}>{siteConfig.url}</a> — the pages, the blog, the waitlist and
-            the newsletter. They&apos;re deliberately short: this is a marketing site, not the
-            product. The {siteConfig.name} platform will have its own terms when it launches.
+            <a href={siteConfig.url}>{siteConfig.url}</a>: the pages, the blog, the waitlist and the
+            newsletter. They&apos;re deliberately short: this is a marketing site, not the product.
+            The {siteConfig.name} platform will have its own terms when it launches.
           </p>
 
           <h2>Using this site</h2>
           <p>
             You&apos;re welcome to browse, read, share links, and join the waitlist or newsletter.
-            You agree not to abuse the site — no attempting to disrupt it, probe or overload our
+            You agree not to abuse the site: no attempting to disrupt it, probe or overload our
             forms, scrape subscriber information, or submit entries on behalf of people who
             didn&apos;t ask you to.
           </p>
@@ -49,17 +49,17 @@ export default function TermsPage() {
 
           <h2>Our content</h2>
           <p>
-            The writing, design, and brand on this site — including the {siteConfig.name} name, the
-            leaf mark, and the essays on the blog — belong to {siteConfig.name}. You may quote and
+            The writing, design, and brand on this site, including the {siteConfig.name} name, the
+            leaf mark, and the essays on the blog, belong to {siteConfig.name}. You may quote and
             share excerpts with attribution and a link; republishing whole pieces requires
-            permission (ask — we&apos;re friendly:{" "}
+            permission (ask, we&apos;re friendly:{" "}
             <a href={`mailto:${siteConfig.pressEmail}`}>{siteConfig.pressEmail}</a>).
           </p>
 
           <h2>No warranties</h2>
           <p>
             This site is provided as-is. We work to keep it accurate and available, but we make no
-            guarantees — about uptime, about launch dates (the <a href="/roadmap">roadmap</a> speaks
+            guarantees: about uptime, about launch dates (the <a href="/roadmap">roadmap</a> speaks
             in seasons for a reason), or about features described before they ship. Plans described
             here may change as the product takes shape.
           </p>

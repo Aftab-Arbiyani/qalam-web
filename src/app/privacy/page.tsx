@@ -25,9 +25,9 @@ export default function PrivacyPage() {
 
           <p>
             This policy covers the {siteConfig.name} pre-launch website at{" "}
-            <a href={siteConfig.url}>{siteConfig.url}</a>. It is written to be read — short, in
-            plain language, and honest about what we collect and why. When the {siteConfig.name}{" "}
-            product launches, it will ship with its own policy.
+            <a href={siteConfig.url}>{siteConfig.url}</a>. It is written to be read: short, in plain
+            language, and honest about what we collect and why. When the {siteConfig.name} product
+            launches, it will ship with its own policy.
           </p>
 
           <h2>What we collect</h2>
@@ -45,7 +45,7 @@ export default function PrivacyPage() {
           </ul>
           <p>
             We also use Firebase Analytics (Google Analytics 4) to understand how the site is used
-            in aggregate — pages viewed, how far people scroll, which buttons are clicked. This data
+            in aggregate: pages viewed, how far people scroll, which buttons are clicked. This data
             is pseudonymous; we don&apos;t use it to identify you, and we don&apos;t buy, sell, or
             enrich it with data from anywhere else.
           </p>
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
           <h2>What we use it for</h2>
           <ul>
             <li>To hold your place in line and email you when your circle opens.</li>
-            <li>To send the newsletter you asked for — occasional letters, no drip campaigns.</li>
+            <li>To send the newsletter you asked for: occasional letters, no drip campaigns.</li>
             <li>To understand which parts of this site work, so we can improve it.</li>
           </ul>
           <p>
@@ -81,8 +81,8 @@ export default function PrivacyPage() {
           <h2>Your rights</h2>
           <p>
             You can ask us at any time to show you the information we hold about you, correct it, or
-            delete it entirely — including removing you from the waitlist or newsletter. One email
-            to <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> is enough; we&apos;ll
+            delete it entirely, including removing you from the waitlist or newsletter. One email to{" "}
+            <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> is enough; we&apos;ll
             confirm when it&apos;s done. Every newsletter also carries an unsubscribe link.
           </p>
 

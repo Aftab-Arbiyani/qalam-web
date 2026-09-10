@@ -8,7 +8,7 @@ import { UmberleafMark } from "@/shared/components/brand/umberleaf-mark"
 
 const MANUSCRIPT_LINES = [
   "The lighthouse keeper's daughter learned to read",
-  "by the sweep of the lamp — four seconds of light,",
+  "by the sweep of the lamp, four seconds of light,",
   "four of dark. Her father said the sea taught",
   "patience; she suspected it taught rhythm,",
 ] as const

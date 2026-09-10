@@ -43,7 +43,7 @@ export function NewsletterForm({ source, className }: NewsletterFormProps) {
           >
             <MailCheck className="size-4 shrink-0 text-primary" aria-hidden />
             {status === "duplicate"
-              ? "You're already subscribed — the next letter is on its way."
+              ? "You're already subscribed. The next letter is on its way."
               : "Subscribed. Letters on craft, sent rarely and only when worth it."}
           </m.p>
         ) : (

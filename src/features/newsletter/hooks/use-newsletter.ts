@@ -17,7 +17,7 @@ export type NewsletterStatus = "idle" | "submitting" | "success" | "duplicate" |
 
 const ERROR_MESSAGES: Record<SubmitFailureReason, string> = {
   duplicate: "",
-  "rate-limited": "A few too many tries — give it a minute.",
+  "rate-limited": "A few too many tries. Give it a minute.",
   unavailable: "Can't reach the mailing list right now. Try again shortly.",
   unknown: "Something went wrong on our side. Please try again.",
 }

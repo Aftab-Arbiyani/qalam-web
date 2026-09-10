@@ -8,7 +8,7 @@ export const waitlistSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(2, "Tell us your name — even a pen name works.")
+    .min(2, "Tell us your name. Even a pen name works.")
     .max(80, "That name is a little long."),
   email: z
     .string()

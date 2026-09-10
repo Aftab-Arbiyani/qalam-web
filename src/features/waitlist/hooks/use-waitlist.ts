@@ -18,7 +18,7 @@ export type WaitlistStatus = "idle" | "submitting" | "success" | "duplicate" | "
 /** Human copy for every failure mode — no raw error strings in the UI. */
 const ERROR_MESSAGES: Record<WaitlistFailureReason, string> = {
   duplicate: "",
-  "rate-limited": "A few too many tries — give it a minute and try again.",
+  "rate-limited": "A few too many tries. Give it a minute and try again.",
   unavailable: "The waitlist isn't reachable right now. Please try again shortly.",
   unknown: "Something went wrong on our side. Please try again.",
 }

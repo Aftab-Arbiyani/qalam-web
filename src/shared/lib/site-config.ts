@@ -6,7 +6,7 @@ export const siteConfig = {
   name: "Umberleaf",
   tagline: "A quieter home for the written word",
   description:
-    "Umberleaf is a writing platform for people who take words seriously — a focused editor, a craft-first companion, and readers who actually read. Coming soon. Join the waitlist.",
+    "Umberleaf is a writing platform for people who take words seriously: a focused editor, a craft-first companion, and readers who actually read. Coming soon. Join the waitlist.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://umberleaf.com",
   /** Contact + social identity. Update handles before launch. */
   email: "hello@umberleaf.com",

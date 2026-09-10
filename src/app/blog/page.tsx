@@ -15,7 +15,7 @@ import { Section, SectionHeading } from "@/shared/ui/section"
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Notes from the desk — essays on craft, the making of Umberleaf, and the slower side of writing on the internet.",
+    "Notes from the desk: essays on craft, the making of Umberleaf, and the slower side of writing on the internet.",
   alternates: { canonical: "/blog" },
 }
 

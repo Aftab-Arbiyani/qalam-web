@@ -21,7 +21,7 @@ const MISSION_POINTS = [
   },
   {
     title: "Coach craft, never replace it",
-    body: "Our AI reads like an editor and asks like a mentor. It has no path to your page — the words are always yours.",
+    body: "Our AI reads like an editor and asks like a mentor. It has no path to your page; the words are always yours.",
   },
   {
     title: "Honor the reader",
@@ -47,17 +47,17 @@ export default function AboutPage() {
           <div className="prose-umberleaf">
             <Reveal>
               <p>
-                An <em>umber leaf</em> is an autumn leaf — umber for the earth pigment, the deep
+                An <em>umber leaf</em> is an autumn leaf: umber for the earth pigment, the deep
                 red-brown of a season turning. We chose it because a leaf is already a page: thin,
-                particular, and ready in its own time. It names the oldest promise of this craft —
+                particular, and ready in its own time. It names the oldest promise of this craft:
                 something between a mind and a page, and nothing else in the way.
               </p>
             </Reveal>
             <Reveal>
               <p>
                 Umberleaf began as a frustration shared over too many cups of coffee: everyone we
-                knew who loved writing had quietly stopped publishing. Not writing —{" "}
-                <em>publishing</em>. The platforms had turned the town square into a trading floor,
+                knew who loved writing had quietly stopped publishing. Not writing.{" "}
+                <em>Publishing</em>. The platforms had turned the town square into a trading floor,
                 and the writers we admired had drawers full of work that deserved readers and no
                 room worth putting it in.
               </p>
@@ -115,7 +115,7 @@ export default function AboutPage() {
             <Reveal>
               <p>
                 Ten years from now, we want there to be writers who came of age on Umberleaf and
-                find the old bargain strange — who assume readers arrive to read, that feedback
+                find the old bargain strange: who assume readers arrive to read, that feedback
                 sounds like editing rather than scoring, and that the measure of a piece is whether
                 it was worth someone&apos;s whole attention.
               </p>

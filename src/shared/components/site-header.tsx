@@ -53,7 +53,7 @@ export function SiteHeader() {
         <Link
           href="/"
           className="rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-          aria-label="Umberleaf — home"
+          aria-label="Umberleaf home"
         >
           <UmberleafWordmark />
         </Link>

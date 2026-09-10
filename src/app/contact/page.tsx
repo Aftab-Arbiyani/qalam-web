@@ -12,7 +12,7 @@ import { Section, SectionHeading } from "@/shared/ui/section"
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Write to the Umberleaf team — questions, press, partnerships, or just a good sentence.",
+    "Write to the Umberleaf team: questions, press, partnerships, or just a good sentence.",
   alternates: { canonical: "/contact" },
 }
 
@@ -20,7 +20,7 @@ const CHANNELS = [
   {
     icon: Mail,
     title: "Say hello",
-    body: "Questions, ideas, or a sentence you're proud of — we read everything.",
+    body: "Questions, ideas, or a sentence you're proud of. We read everything.",
     action: { label: siteConfig.email, href: `mailto:${siteConfig.email}` },
   },
   {
@@ -45,7 +45,7 @@ export default function ContactPage() {
           as="h1"
           eyebrow="Contact"
           title="Write to us. We're partial to letters."
-          description="A small team reads this inbox — expect a human reply, at human speed."
+          description="A small team reads this inbox. Expect a human reply, at human speed."
         />
 
         <RevealGroup className="grid gap-5 sm:grid-cols-3" stagger={0.08}>
