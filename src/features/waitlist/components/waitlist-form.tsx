@@ -77,7 +77,7 @@ export function WaitlistForm({ source, className }: WaitlistFormProps) {
             onSubmit={onSubmit}
             noValidate
             className="flex flex-col gap-5"
-            aria-label="Join the Qalam waitlist"
+            aria-label="Join the Umberleaf waitlist"
           >
             {/* Honeypot — visually hidden, ignored by humans and screen readers. */}
             <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">

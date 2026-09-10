@@ -6,7 +6,7 @@ import { Section } from "@/shared/ui/section"
 
 export const metadata: Metadata = {
   title: "Terms of service",
-  description: "The terms that govern your use of Qalam's pre-launch website.",
+  description: "The terms that govern your use of Umberleaf's pre-launch website.",
   alternates: { canonical: "/terms" },
 }
 
@@ -16,7 +16,7 @@ export default function TermsPage() {
   return (
     <Section spacing="hero">
       <Container size="narrow">
-        <div className="mx-auto prose-qalam">
+        <div className="mx-auto prose-umberleaf">
           <p className="text-sm font-medium tracking-[0.18em] text-primary uppercase">Legal</p>
           <h1 className="mt-2 mb-2 font-display text-3xl font-semibold md:text-4xl">
             Terms of service
@@ -50,7 +50,7 @@ export default function TermsPage() {
           <h2>Our content</h2>
           <p>
             The writing, design, and brand on this site — including the {siteConfig.name} name, the
-            qāf mark, and the essays on the blog — belong to {siteConfig.name}. You may quote and
+            leaf mark, and the essays on the blog — belong to {siteConfig.name}. You may quote and
             share excerpts with attribution and a link; republishing whole pieces requires
             permission (ask — we&apos;re friendly:{" "}
             <a href={`mailto:${siteConfig.pressEmail}`}>{siteConfig.pressEmail}</a>).

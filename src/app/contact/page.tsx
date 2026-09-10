@@ -11,7 +11,8 @@ import { Section, SectionHeading } from "@/shared/ui/section"
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Write to the Qalam team — questions, press, partnerships, or just a good sentence.",
+  description:
+    "Write to the Umberleaf team — questions, press, partnerships, or just a good sentence.",
   alternates: { canonical: "/contact" },
 }
 
@@ -25,7 +26,7 @@ const CHANNELS = [
   {
     icon: Newspaper,
     title: "Press & partnerships",
-    body: "Writing about Qalam, or building something adjacent to it?",
+    body: "Writing about Umberleaf, or building something adjacent to it?",
     action: { label: siteConfig.pressEmail, href: `mailto:${siteConfig.pressEmail}` },
   },
   {
@@ -83,7 +84,7 @@ export default function ContactPage() {
           <div className="mt-14 rounded-2xl border bg-muted/50 p-8">
             <h2 className="mb-2 font-display text-lg font-semibold">Prefer we write first?</h2>
             <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-              Occasional letters on craft and the making of Qalam.
+              Occasional letters on craft and the making of Umberleaf.
             </p>
             <NewsletterForm source="contact" />
           </div>

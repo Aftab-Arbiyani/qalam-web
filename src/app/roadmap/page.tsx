@@ -11,7 +11,7 @@ import { cn } from "@/shared/lib/utils"
 export const metadata: Metadata = {
   title: "Roadmap",
   description:
-    "What we're building and in what order — Qalam's public roadmap, from the waitlist to the first open circles.",
+    "What we're building and in what order — Umberleaf's public roadmap, from the waitlist to the first open circles.",
   alternates: { canonical: "/roadmap" },
 }
 

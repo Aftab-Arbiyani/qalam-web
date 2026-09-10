@@ -1,6 +1,7 @@
-# Qalam — marketing site
+# Umberleaf — marketing site
 
-Pre-launch marketing website for **Qalam** (قلم — the Arabic word for _pen_), a writing
+Pre-launch marketing website for **Umberleaf** (an umber leaf is an autumn leaf — and a
+leaf is a page), a writing
 platform for people who take words seriously. This site builds the audience before launch:
 it tells the story, collects the **waitlist**, runs a **newsletter**, and hosts the **blog**.
 
@@ -50,7 +51,7 @@ src/
 ├── lib/firebase/             # lazy client, typed analytics events, error mapping
 └── shared/
     ├── ui/                   # Button, Card, Badge, Input, Accordion, Container, Section…
-    ├── components/           # header, footer, theme, brand mark (path-based ق), trackers
+    ├── components/           # header, footer, theme, brand mark (stroked leaf path), trackers
     ├── animations/           # presets.ts (motion vocabulary) + Reveal/RevealGroup
     └── lib/                  # site-config (SEO source of truth), fonts, utils, rate-limit
 ```
@@ -66,8 +67,9 @@ Key decisions:
   (localStorage sliding window) + strict schema validation in `firestore.rules`.
 - **Fonts are self-hosted** (`next/font/local`, variable woff2) — deterministic builds,
   no third-party requests, no CLS.
-- **Brand mark is a vector path** (the same canonical qāf used by the mobile app icon) —
-  no font dependency, crisp everywhere, themeable.
+- **Brand mark is a vector path** — the canonical Umberleaf leaf, stroked not filled, shared
+  with the mobile app icon. No font dependency, crisp everywhere, themeable. It is vendored
+  from `~/projects/umberleaf-brand`; run `pnpm brand:sync` to refresh all copies at once.
 - **Every page is statically generated.** No server runtime needed beyond static hosting;
   Firestore writes happen client-side under security rules.
 

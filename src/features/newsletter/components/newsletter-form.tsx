@@ -54,7 +54,7 @@ export function NewsletterForm({ source, className }: NewsletterFormProps) {
             onSubmit={onSubmit}
             noValidate
             className="flex flex-col gap-2"
-            aria-label="Subscribe to the Qalam newsletter"
+            aria-label="Subscribe to the Umberleaf newsletter"
           >
             {/* Honeypot */}
             <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">

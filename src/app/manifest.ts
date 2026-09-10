@@ -13,7 +13,7 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#9e4b28",
     icons: [
       {
-        src: "/brand/qalam-tile.svg",
+        src: "/brand/umberleaf-tile.svg",
         sizes: "any",
         type: "image/svg+xml",
         purpose: "any",

@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-/** What brings someone to Qalam — mirrored in firestore.rules. */
+/** What brings someone to Umberleaf — mirrored in firestore.rules. */
 export const WAITLIST_INTERESTS = ["writing", "reading", "both"] as const
 export type WaitlistInterest = (typeof WAITLIST_INTERESTS)[number]
 

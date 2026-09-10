@@ -1,7 +1,7 @@
 import { WaitlistForm } from "@/features/waitlist/components/waitlist-form"
 import { waitlistSection } from "@/features/landing/content"
 import { Reveal } from "@/shared/animations/reveal"
-import { QalamMark } from "@/shared/components/brand/qalam-mark"
+import { UmberleafMark } from "@/shared/components/brand/umberleaf-mark"
 import { Container } from "@/shared/ui/container"
 import { Section, SectionHeading } from "@/shared/ui/section"
 
@@ -11,7 +11,7 @@ export function WaitlistSection() {
     <Section id="waitlist" tone="muted" className="scroll-mt-16">
       <Container className="flex flex-col items-center">
         <Reveal className="flex flex-col items-center">
-          <QalamMark size={56} className="mb-8" label={null} />
+          <UmberleafMark size={56} className="mb-8" label={null} />
           <SectionHeading
             eyebrow={waitlistSection.eyebrow}
             title={waitlistSection.title}

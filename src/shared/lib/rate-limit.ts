@@ -15,7 +15,7 @@ interface RateLimitOptions {
   windowMs: number
 }
 
-const STORAGE_PREFIX = "qalam.rl."
+const STORAGE_PREFIX = "umberleaf.rl."
 
 function readTimestamps(key: string): number[] {
   try {

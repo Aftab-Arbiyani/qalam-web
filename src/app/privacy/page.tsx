@@ -6,7 +6,7 @@ import { Section } from "@/shared/ui/section"
 
 export const metadata: Metadata = {
   title: "Privacy policy",
-  description: "How Qalam's pre-launch website collects, uses and protects your information.",
+  description: "How Umberleaf's pre-launch website collects, uses and protects your information.",
   alternates: { canonical: "/privacy" },
 }
 
@@ -16,7 +16,7 @@ export default function PrivacyPage() {
   return (
     <Section spacing="hero">
       <Container size="narrow">
-        <div className="mx-auto prose-qalam">
+        <div className="mx-auto prose-umberleaf">
           <p className="text-sm font-medium tracking-[0.18em] text-primary uppercase">Legal</p>
           <h1 className="mt-2 mb-2 font-display text-3xl font-semibold md:text-4xl">
             Privacy policy
@@ -35,8 +35,8 @@ export default function PrivacyPage() {
           <ul>
             <li>
               <strong>Waitlist signups.</strong> Your name (a pen name is fine), email address, and
-              what brings you to Qalam (writing, reading, or both), along with the time you joined
-              and which part of the site you joined from.
+              what brings you to Umberleaf (writing, reading, or both), along with the time you
+              joined and which part of the site you joined from.
             </li>
             <li>
               <strong>Newsletter subscriptions.</strong> Your email address, the time you

@@ -2,7 +2,7 @@ import Link from "next/link"
 
 import { NewsletterForm } from "@/features/newsletter/components/newsletter-form"
 import { ExternalLink } from "@/shared/components/external-link"
-import { QalamWordmark } from "@/shared/components/brand/qalam-mark"
+import { UmberleafWordmark } from "@/shared/components/brand/umberleaf-mark"
 import { siteConfig } from "@/shared/lib/site-config"
 import { Container } from "@/shared/ui/container"
 
@@ -26,13 +26,10 @@ export function SiteFooter() {
       <Container className="py-14 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1.6fr]">
           <div className="flex flex-col gap-4">
-            <QalamWordmark />
+            <UmberleafWordmark />
             <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-              {siteConfig.tagline}. <span className="font-display italic">Qalam</span> —{" "}
-              <span lang="ar" dir="rtl">
-                {siteConfig.nameArabic}
-              </span>{" "}
-              — is the Arabic word for pen.
+              {siteConfig.tagline}. An <span className="font-display italic">umber leaf</span> is an
+              autumn leaf — and a leaf is a page.
             </p>
           </div>
 
@@ -71,7 +68,7 @@ export function SiteFooter() {
           <div className="flex flex-col gap-3">
             <h2 className="text-sm font-semibold tracking-wide">Letters on craft</h2>
             <p className="text-sm text-muted-foreground">
-              Occasional essays on writing and the making of Qalam. Rare, and worth it.
+              Occasional essays on writing and the making of Umberleaf. Rare, and worth it.
             </p>
             <NewsletterForm source="footer" />
           </div>
