@@ -122,9 +122,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal>
               <blockquote>
-                <p>
-                  The pen is the instrument. The writing is the point. Everything else is furniture.
-                </p>
+                <p>The writing is the point. Everything else is furniture.</p>
               </blockquote>
             </Reveal>
             <Reveal>
