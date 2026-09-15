@@ -7,7 +7,7 @@ import { SiteFooter } from "@/shared/components/site-footer"
 import { SiteHeader } from "@/shared/components/site-header"
 import { fraunces, inter } from "@/shared/lib/fonts"
 import { JsonLd, organizationSchema, websiteSchema } from "@/shared/lib/seo/json-ld"
-import { siteConfig } from "@/shared/lib/site-config"
+import { ogImage, siteConfig } from "@/shared/lib/site-config"
 
 import "./globals.css"
 
@@ -32,14 +32,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.description,
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: `${siteConfig.name} · ${siteConfig.tagline}`,
-      },
-    ],
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
@@ -47,7 +40,7 @@ export const metadata: Metadata = {
     creator: siteConfig.social.twitterHandle,
     title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.description,
-    images: ["/og.png"],
+    images: [ogImage],
   },
   robots: {
     index: true,

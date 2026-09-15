@@ -34,6 +34,23 @@ export const siteConfig = {
 
 export type SiteConfig = typeof siteConfig
 
+/**
+ * The share card, in the shape both `openGraph.images` and `twitter.images`
+ * expect.
+ *
+ * Next.js REPLACES `openGraph` and `twitter` wholesale when a page declares
+ * them — it does not merge them with the root layout's. Any page that sets its
+ * own social metadata must therefore restate the image, or it ships a
+ * `summary_large_image` card with no image at all. Spread this rather than
+ * rebuilding it, so there is one thing to change when the artwork does.
+ */
+export const ogImage = {
+  url: "/og.png",
+  width: 1200,
+  height: 630,
+  alt: `${siteConfig.name} · ${siteConfig.tagline}`,
+} as const
+
 /** Absolute URL builder for metadata, sitemap, RSS and JSON-LD. */
 export function absoluteUrl(path = "/"): string {
   const base = siteConfig.url.replace(/\/$/, "")
