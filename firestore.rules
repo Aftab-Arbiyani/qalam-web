@@ -13,14 +13,30 @@ rules_version = '2';
 //   • Duplicate prevention: doc IDs are sha256(email); a repeat signup targets
 //     the same ID, becomes an update, and is denied. The client shows
 //     "already on the list" — without being able to enumerate emails.
-//   • Doc ID must be a 64-char hex string (blocks junk IDs / path abuse).
+//   • Doc ID must BE sha256(the email in the document). Checking only that the
+//     ID looked like a hash left dedupe as a client-side convention: anyone
+//     holding the (public) config could write the same address under unlimited
+//     random 64-hex IDs, and every one of them would pass. Binding the ID to
+//     the payload is what makes one address mean one document.
 // ─────────────────────────────────────────────────────────────────────────────
+//
+// ⚠️  These rules are the entire protection model AND the only thing standing
+//     between a visitor and a silent failure: a rejected write is reported to
+//     them as "you're already on the list". Never deploy an edit that has not
+//     been exercised in the Rules Playground or the emulator — a mistake here
+//     does not look like an outage, it looks like success.
 
 service cloud.firestore {
   match /databases/{database}/documents {
 
     function isSha256Hex(id) {
       return id.matches('^[a-f0-9]{64}$');
+    }
+
+    // The document's own id must be the digest of the address it carries.
+    // `toHexString()` returns uppercase; the client writes lowercase.
+    function idBindsEmail(id, email) {
+      return id == hashing.sha256(email).toHexString().lower();
     }
 
     function validEmail(email) {
@@ -43,6 +59,7 @@ service cloud.firestore {
         && request.resource.data.keys().hasOnly(['email', 'name', 'interest', 'createdAt', 'source', 'status'])
         && request.resource.data.keys().hasAll(['email', 'name', 'interest', 'createdAt', 'source', 'status'])
         && validEmail(request.resource.data.email)
+        && idBindsEmail(entryId, request.resource.data.email)
         && request.resource.data.name is string
         && request.resource.data.name.size() >= 1
         && request.resource.data.name.size() <= 80
@@ -60,6 +77,7 @@ service cloud.firestore {
         && request.resource.data.keys().hasOnly(['email', 'createdAt', 'source', 'status'])
         && request.resource.data.keys().hasAll(['email', 'createdAt', 'source', 'status'])
         && validEmail(request.resource.data.email)
+        && idBindsEmail(entryId, request.resource.data.email)
         && request.resource.data.createdAt == request.time
         && validSource(request.resource.data.source)
         && request.resource.data.status == 'subscribed';
