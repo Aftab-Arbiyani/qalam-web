@@ -10,7 +10,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 }
 
-const LAST_UPDATED = "July 22, 2026"
+// The policy promises this date moves whenever the policy does. Adding a
+// processor is material, so it moves.
+const LAST_UPDATED = "September 15, 2026"
 
 export default function PrivacyPage() {
   return (
@@ -49,6 +51,12 @@ export default function PrivacyPage() {
             is pseudonymous; we don&apos;t use it to identify you, and we don&apos;t buy, sell, or
             enrich it with data from anywhere else.
           </p>
+          <p>
+            Alongside it we use Vercel Analytics, which counts page views and where visitors arrived
+            from. It sets no cookies and stores no identifier on your device: each view is recorded
+            as a one-way hash that is discarded within a day, so it cannot follow you between visits
+            or across sites, and there is nothing in it we could tie back to you.
+          </p>
 
           <h2>What we use it for</h2>
           <ul>
@@ -63,19 +71,29 @@ export default function PrivacyPage() {
 
           <h2>Where it lives</h2>
           <p>
-            Waitlist and newsletter entries are stored in Google Cloud Firestore. Analytics data is
-            processed by Google&apos;s Firebase Analytics. Both are governed by{" "}
+            Waitlist and newsletter entries are stored in Google Cloud Firestore, and that analytics
+            data is processed by Google&apos;s Firebase Analytics. Both are governed by{" "}
             <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
               Google&apos;s privacy policy
             </a>{" "}
-            in addition to this one. This website is hosted on Vercel.
+            in addition to this one. This website is hosted on Vercel, who also process the Vercel
+            Analytics counts under{" "}
+            <a
+              href="https://vercel.com/legal/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              their privacy policy
+            </a>
+            .
           </p>
 
           <h2>Cookies & local storage</h2>
           <p>
             We use local storage for your theme preference (light or dark) and for basic client-side
             rate limiting on our forms. Firebase Analytics sets its own identifiers to distinguish
-            visits. We run no third-party advertising or tracking pixels.
+            visits; Vercel Analytics sets nothing at all. We run no third-party advertising or
+            tracking pixels.
           </p>
 
           <h2>Your rights</h2>

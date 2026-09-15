@@ -9,7 +9,8 @@ Completely independent from the product apps — its own repo, its own Vercel pr
 its own Firebase project.
 
 **Stack:** Next.js 15 (App Router) · TypeScript (strict) · Tailwind CSS v4 · shadcn-style UI ·
-Framer Motion · Firebase (Firestore + Analytics) · React Hook Form + Zod · MDX blog · Vercel.
+Framer Motion · Firebase (Firestore + Analytics) · Vercel Analytics · React Hook Form + Zod ·
+MDX blog · Vercel.
 
 ## Quick start
 
@@ -119,6 +120,17 @@ leaving both on counted every landing twice.
 
 The two `*_duplicate` events are a health check rather than a metric: they are the only signal
 that distinguishes "already subscribed" from "the rules are rejecting everything".
+
+**Vercel Analytics** runs alongside, mounted once in the root layout. It answers a different
+question — reach (views, referrers, countries, devices) rather than behaviour — and it is
+cookieless, sets no device identifier, and is served from our own origin
+(`/_vercel/insights/*`), so it needs no consent gate and no CSP allowance. It reports only from
+a Vercel deployment; locally the script 404s and the component is inert, which is expected.
+
+Keep `trackEvent` as the single typed place product events are defined. If Vercel ever needs
+custom events too, fan out **inside** `trackEvent` rather than adding a second call beside each
+existing one — two hand-maintained event lists drift, and this repo has already paid for that
+lesson once with the brand mark.
 
 ## Blog
 

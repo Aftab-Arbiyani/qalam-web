@@ -207,6 +207,21 @@ These were identified in the review and deliberately not decided here.
    privacy page states there is no banner. The lazy init makes a consent gate easy — nothing calls
    `getAnalytics` until a form or a route change does — but whether to ship one is a product and
    legal call.
+
+   **Updated 2026-09-15:** Vercel Analytics is now installed alongside, and it changes the shape
+   of this decision. It is cookieless, sets no device identifier, and is same-origin, so it needs
+   no consent. It already covers views, referrers, countries and devices — most of what GA4 was
+   being asked for on a pre-launch site. That makes a third option real:
+
+   |                                              |                                                                                                                                                                                                                                                 |
+   | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | Ship a consent banner                        | Keeps GA4's funnels and custom events. Costs a banner on a site whose whole pitch is quiet.                                                                                                                                                     |
+   | Gate GA4 behind consent, keep Vercel ungated | Full data from those who opt in, honest traffic counts from everyone. Most work.                                                                                                                                                                |
+   | **Drop GA4 entirely**                        | No banner, no cookies, nothing to disclose beyond what is now written. Loses `scroll_depth`, `faq_open`, `cta_click` and the `*_duplicate` canary — **and that last one is load-bearing** (§H2), so it would need somewhere else to live first. |
+
+   Not decided here. But option three is only cheap _before_ launch — the canary has to be
+   re-homed, and that is a code change, not a settings toggle.
+
 2. **`siteConfig.social` handles are unverified.** `@umberleaf` is emitted in JSON-LD `sameAs` and
    `twitter:site`. The config comment says "update handles before launch"; if those accounts aren't
    owned, every share card credits a stranger.

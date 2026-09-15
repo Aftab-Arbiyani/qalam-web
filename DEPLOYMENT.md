@@ -58,6 +58,12 @@ is the other way this failure arrives.
    - `NEXT_PUBLIC_FIREBASE_*` → from step 1.3 (all scopes)
 4. Deploy. Every push to the default branch now ships to production; every PR gets a
    preview URL.
+5. **Analytics → Enable.** The `<Analytics />` component is already in the root layout, but it
+   only reports once the product is switched on for the project. Nothing to configure and no
+   env var — it posts to `/_vercel/insights/*` on our own domain.
+
+   It is inert anywhere but a Vercel deployment: running `pnpm start` locally, that script 404s
+   and no data is sent. A 404 there is expected, not a misconfiguration.
 
 ### Custom domain
 
@@ -80,6 +86,8 @@ JSON-LD all read from it.
       merging with it, so a missing image there is invisible from `/`
 - [ ] Firebase console → Analytics → Realtime shows `page_view` events — **one per navigation,
       not two.** Two means `send_page_view: false` was lost in `analytics.ts`
+- [ ] Vercel dashboard → Analytics shows the same visit. If it stays empty, check Analytics is
+      enabled for the project before suspecting the code — the component fails quiet by design
 - [ ] Response headers carry `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`
       and `Content-Security-Policy: frame-ancestors 'none'` (`curl -I https://<domain>/`)
 - [ ] With JavaScript disabled, `/` still shows its headline, body copy and the waitlist

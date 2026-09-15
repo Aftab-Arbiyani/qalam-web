@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
 import type { ReactNode } from "react"
 
@@ -76,6 +77,20 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           <SiteFooter />
           <AnalyticsTracker />
         </Providers>
+        {/*
+          Vercel Analytics — traffic shape (views, referrers, countries, devices).
+
+          Cookieless and identifier-free, so unlike GA4 it needs no consent gate,
+          and it is served from our own origin (/_vercel/insights/*) rather than
+          a third party. It only reports from a Vercel deployment; locally and in
+          any other host it is inert.
+
+          It does NOT replace `trackEvent` — that remains the typed, single place
+          product events are defined. This measures reach; that measures
+          behaviour. If these two ever need to agree, fan out inside `trackEvent`
+          rather than sprinkling a second call site next to each existing one.
+        */}
+        <Analytics />
         <JsonLd schema={organizationSchema()} />
         <JsonLd schema={websiteSchema()} />
       </body>
