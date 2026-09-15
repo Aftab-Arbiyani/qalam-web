@@ -11,18 +11,19 @@ import {
 import { subscribeToNewsletter } from "@/features/newsletter/services/newsletter-service"
 import type { SubmitFailureReason } from "@/lib/firebase/errors"
 import { trackEvent } from "@/lib/firebase/analytics"
-import { consumeRateLimit } from "@/shared/lib/rate-limit"
+import { consumeRateLimit, refundRateLimit } from "@/shared/lib/rate-limit"
 
 export type NewsletterStatus = "idle" | "submitting" | "success" | "duplicate" | "error"
 
-const ERROR_MESSAGES: Record<SubmitFailureReason, string> = {
-  duplicate: "",
+/** `duplicate` is a success state with its own copy — see use-waitlist. */
+const ERROR_MESSAGES: Record<Exclude<SubmitFailureReason, "duplicate">, string> = {
   "rate-limited": "A few too many tries. Give it a minute.",
   unavailable: "Can't reach the mailing list right now. Try again shortly.",
   unknown: "Something went wrong on our side. Please try again.",
 }
 
 const MIN_FILL_TIME_MS = 1500
+const RATE_LIMIT_KEY = "newsletter"
 
 /** Submission state machine for the one-field newsletter form. */
 export function useNewsletter(source: string) {
@@ -45,7 +46,7 @@ export function useNewsletter(source: string) {
         return
       }
 
-      if (!consumeRateLimit({ key: "newsletter", max: 3, windowMs: 10 * 60_000 })) {
+      if (!consumeRateLimit({ key: RATE_LIMIT_KEY, max: 3, windowMs: 10 * 60_000 })) {
         setStatus("error")
         setErrorMessage(ERROR_MESSAGES["rate-limited"])
         return
@@ -61,8 +62,10 @@ export function useNewsletter(source: string) {
       }
       if (result.reason === "duplicate") {
         setStatus("duplicate")
+        trackEvent("newsletter_duplicate", { source })
         return
       }
+      if (result.reason === "unavailable") refundRateLimit(RATE_LIMIT_KEY)
       setStatus("error")
       setErrorMessage(ERROR_MESSAGES[result.reason])
     },

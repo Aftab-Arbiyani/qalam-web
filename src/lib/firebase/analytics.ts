@@ -16,6 +16,16 @@ export interface AnalyticsEvents {
   page_view: { page_path: string; page_title?: string }
   waitlist_signup: { source: string; interest: string }
   newsletter_signup: { source: string }
+  /**
+   * Fired when a write is rejected as a duplicate — which is also what every
+   * *other* rules rejection looks like from the client (see errors.ts). Genuine
+   * duplicates are a few percent of submissions; a ratio near 100% means the
+   * rules are rejecting everything and no signup is being stored. This pair of
+   * events is the only signal that distinguishes the two, so treat them as a
+   * health check rather than a vanity metric.
+   */
+  waitlist_duplicate: { source: string }
+  newsletter_duplicate: { source: string }
   cta_click: { cta: string; location: string }
   scroll_depth: { percent: 25 | 50 | 75 | 100; page_path: string }
   blog_read: { slug: string; title: string }
@@ -35,12 +45,21 @@ function getAnalyticsInstance(): Promise<Analytics | null> {
   }
   analyticsPromise ??= (async () => {
     try {
-      const [{ getAnalytics, isSupported }, app] = await Promise.all([
+      const [{ initializeAnalytics, isSupported }, app] = await Promise.all([
         import("firebase/analytics"),
         getFirebaseApp(),
       ])
       if (!(await isSupported())) return null
-      return getAnalytics(app)
+      /*
+        `send_page_view: false` is load-bearing. gtag fires an automatic
+        page_view the moment it is configured, and <AnalyticsTracker> fires its
+        own on mount — which is also what lazily initializes analytics in the
+        first place, so the two are guaranteed to collide rather than merely
+        racing. Every landing was counted twice, and every per-view conversion
+        rate was halved. We own route changes (Firebase only auto-tracks the
+        first load, never App Router navigations), so we own the first one too.
+      */
+      return initializeAnalytics(app, { config: { send_page_view: false } })
     } catch {
       // Blocked by an extension or unsupported environment — analytics is
       // never worth breaking the page for.
