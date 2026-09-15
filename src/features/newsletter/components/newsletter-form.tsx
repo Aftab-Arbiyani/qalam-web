@@ -43,7 +43,7 @@ export function NewsletterForm({ source, className }: NewsletterFormProps) {
           >
             <MailCheck className="size-4 shrink-0 text-primary" aria-hidden />
             {status === "duplicate"
-              ? "You're already subscribed — the next letter is on its way."
+              ? "You're already subscribed. The next letter is on its way."
               : "Subscribed. Letters on craft, sent rarely and only when worth it."}
           </m.p>
         ) : (
@@ -54,7 +54,7 @@ export function NewsletterForm({ source, className }: NewsletterFormProps) {
             onSubmit={onSubmit}
             noValidate
             className="flex flex-col gap-2"
-            aria-label="Subscribe to the Qalam newsletter"
+            aria-label="Subscribe to the Umberleaf newsletter"
           >
             {/* Honeypot */}
             <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">

@@ -11,7 +11,7 @@ import { cn } from "@/shared/lib/utils"
 export const metadata: Metadata = {
   title: "Roadmap",
   description:
-    "What we're building and in what order — Qalam's public roadmap, from the waitlist to the first open circles.",
+    "What we're building and in what order: Umberleaf's public roadmap, from the waitlist to the first open circles.",
   alternates: { canonical: "/roadmap" },
 }
 
@@ -41,7 +41,7 @@ const PHASES: readonly Phase[] = [
     title: "The waitlist & the letters",
     description: "Gathering the first circles and writing in the open while the product hardens.",
     items: [
-      "Waitlist open — circles form in order of joining",
+      "Waitlist open: circles form in order of joining",
       "Essays on craft and build notes on this blog",
       "Private testing of the editor with a small group of writers",
     ],
@@ -53,10 +53,10 @@ const PHASES: readonly Phase[] = [
     description:
       "Early access for the first waitlist circles: the room, the pen, and the first readers.",
     items: [
-      "The editor — focus mode, autosave, versions that make sense",
-      "Publishing — clean pages, permanent addresses, beautiful typography",
-      "The reading room — full pages, margin notes, no infinite scroll",
-      "The craft companion, first edition — rhythm, clarity and structure notes",
+      "The editor: focus mode, autosave, versions that make sense",
+      "Publishing: clean pages, permanent addresses, beautiful typography",
+      "The reading room: full pages, margin notes, no infinite scroll",
+      "The craft companion, first edition: rhythm, clarity and structure notes",
     ],
   },
   {
@@ -65,11 +65,11 @@ const PHASES: readonly Phase[] = [
     title: "The doors open wider",
     description: "More circles, more surfaces, and the parts of the platform that reward patience.",
     items: [
-      "iOS & Android apps — the same care on every screen",
-      "Collections and serials — work that unfolds over time",
-      "Story Map — the people, places and threads of a long work, drawn from the draft itself",
-      "A writer's desk — readers, returns and resonance, in service of craft",
-      "Fair, transparent supporter tools — writers paid without paywalls-by-ambush",
+      "iOS & Android apps: the same care on every screen",
+      "Collections and serials: work that unfolds over time",
+      "Story Map: the people, places and threads of a long work, drawn from the draft itself",
+      "A writer's desk: readers, returns and resonance, in service of craft",
+      "Fair, transparent supporter tools: writers paid without paywalls-by-ambush",
     ],
   },
 ] as const
@@ -83,7 +83,7 @@ export default function RoadmapPage() {
           align="left"
           eyebrow="Roadmap"
           title="Built in the open, in order."
-          description="Dates are seasons, not promises carved in stone — when reality and the roadmap disagree, we update the roadmap, here, in public."
+          description="Dates are seasons, not promises carved in stone. When reality and the roadmap disagree, we update the roadmap, here, in public."
         />
 
         <RevealGroup

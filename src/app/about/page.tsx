@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 import { Reveal } from "@/shared/animations/reveal"
-import { QalamMark } from "@/shared/components/brand/qalam-mark"
+import { UmberleafMark } from "@/shared/components/brand/umberleaf-mark"
 import { Button } from "@/shared/ui/button"
 import { Container } from "@/shared/ui/container"
 import { Section } from "@/shared/ui/section"
@@ -10,7 +10,7 @@ import { Section } from "@/shared/ui/section"
 export const metadata: Metadata = {
   title: "Our story",
   description:
-    "Why Qalam exists: the story, mission and vision behind a quieter home for the written word.",
+    "Why Umberleaf exists: the story, mission and vision behind a quieter home for the written word.",
   alternates: { canonical: "/about" },
 }
 
@@ -21,7 +21,7 @@ const MISSION_POINTS = [
   },
   {
     title: "Coach craft, never replace it",
-    body: "Our AI reads like an editor and asks like a mentor. It has no path to your page — the words are always yours.",
+    body: "Our AI reads like an editor and asks like a mentor. It has no path to your page; the words are always yours.",
   },
   {
     title: "Honor the reader",
@@ -35,35 +35,31 @@ export default function AboutPage() {
       <Section spacing="hero">
         <Container size="narrow">
           <Reveal>
-            <QalamMark size={56} className="mb-8" label={null} />
+            <UmberleafMark size={56} className="mb-8" label={null} />
             <p className="mb-4 text-sm font-medium tracking-[0.18em] text-primary uppercase">
               Our story
             </p>
             <h1 className="mb-8 font-display text-display-sm font-semibold text-balance md:text-display-lg">
-              It started with a word for pen.
+              It started with a leaf and a page.
             </h1>
           </Reveal>
 
-          <div className="prose-qalam">
+          <div className="prose-umberleaf">
             <Reveal>
               <p>
-                <em>Qalam</em> —{" "}
-                <span lang="ar" dir="rtl">
-                  قلم
-                </span>{" "}
-                — is the Arabic word for pen. It travelled through centuries and languages, from
-                reed pens dipped in ink to the word millions still use for the thing you write with.
-                We chose it because it names the oldest promise of this craft: an instrument between
-                a mind and a page, and nothing else in the way.
+                An <em>umber leaf</em> is an autumn leaf: umber for the earth pigment, the deep
+                red-brown of a season turning. We chose it because a leaf is already a page: thin,
+                particular, and ready in its own time. It names the oldest promise of this craft:
+                something between a mind and a page, and nothing else in the way.
               </p>
             </Reveal>
             <Reveal>
               <p>
-                Qalam began as a frustration shared over too many cups of coffee: everyone we knew
-                who loved writing had quietly stopped publishing. Not writing — <em>publishing</em>.
-                The platforms had turned the town square into a trading floor, and the writers we
-                admired had drawers full of work that deserved readers and no room worth putting it
-                in.
+                Umberleaf began as a frustration shared over too many cups of coffee: everyone we
+                knew who loved writing had quietly stopped publishing. Not writing.{" "}
+                <em>Publishing</em>. The platforms had turned the town square into a trading floor,
+                and the writers we admired had drawers full of work that deserved readers and no
+                room worth putting it in.
               </p>
             </Reveal>
             <Reveal>
@@ -115,20 +111,18 @@ export default function AboutPage() {
               A generation of writers who never learned to perform.
             </h2>
           </Reveal>
-          <div className="prose-qalam">
+          <div className="prose-umberleaf">
             <Reveal>
               <p>
-                Ten years from now, we want there to be writers who came of age on Qalam and find
-                the old bargain strange — who assume readers arrive to read, that feedback sounds
-                like editing rather than scoring, and that the measure of a piece is whether it was
-                worth someone&apos;s whole attention.
+                Ten years from now, we want there to be writers who came of age on Umberleaf and
+                find the old bargain strange: who assume readers arrive to read, that feedback
+                sounds like editing rather than scoring, and that the measure of a piece is whether
+                it was worth someone&apos;s whole attention.
               </p>
             </Reveal>
             <Reveal>
               <blockquote>
-                <p>
-                  The pen is the instrument. The writing is the point. Everything else is furniture.
-                </p>
+                <p>The writing is the point. Everything else is furniture.</p>
               </blockquote>
             </Reveal>
             <Reveal>

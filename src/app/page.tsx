@@ -7,7 +7,7 @@ import { RoadmapTeaser } from "@/features/landing/components/roadmap-teaser"
 import { SneakPeek } from "@/features/landing/components/sneak-peek"
 import { Vision } from "@/features/landing/components/vision"
 import { WaitlistSection } from "@/features/landing/components/waitlist-section"
-import { WhyQalam } from "@/features/landing/components/why-qalam"
+import { WhyUmberleaf } from "@/features/landing/components/why-umberleaf"
 import { faq } from "@/features/landing/content"
 import { faqSchema, JsonLd } from "@/shared/lib/seo/json-ld"
 
@@ -27,7 +27,7 @@ export default function HomePage() {
       <Vision />
       <Features />
       <SneakPeek />
-      <WhyQalam />
+      <WhyUmberleaf />
       <RoadmapTeaser />
       <Faq />
       <WaitlistSection />

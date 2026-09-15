@@ -63,8 +63,8 @@ export function WaitlistForm({ source, className }: WaitlistFormProps) {
               </h3>
               <p className="text-sm leading-relaxed text-muted-foreground">
                 {status === "duplicate"
-                  ? "Good news — this email already has a place in line. We'll write to you before the doors open."
-                  : "Welcome. We'll write to you before the doors open — no noise in between, just the letter that matters."}
+                  ? "Good news: this email already has a place in line. We'll write to you before the doors open."
+                  : "Welcome. We'll write to you before the doors open: no noise in between, just the letter that matters."}
               </p>
             </div>
           </m.div>
@@ -77,7 +77,7 @@ export function WaitlistForm({ source, className }: WaitlistFormProps) {
             onSubmit={onSubmit}
             noValidate
             className="flex flex-col gap-5"
-            aria-label="Join the Qalam waitlist"
+            aria-label="Join the Umberleaf waitlist"
           >
             {/* Honeypot — visually hidden, ignored by humans and screen readers. */}
             <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">

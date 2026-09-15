@@ -1,5 +1,5 @@
 {
-  "name": "qalam-web",
+  "name": "umberleaf-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,9 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "brand:sync": "bash tool/brand/sync.sh",
+    "brand:check": "bash tool/brand/sync.sh --check"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",

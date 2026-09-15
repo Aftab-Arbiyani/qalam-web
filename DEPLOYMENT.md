@@ -5,11 +5,11 @@ Two one-time setups (Firebase, Vercel), then every push deploys itself.
 ## 1. Firebase (one time)
 
 1. [console.firebase.google.com](https://console.firebase.google.com) → **Add project**
-   (e.g. `qalam-site`). Enable **Google Analytics** when asked (this creates the GA4
+   (e.g. `umberleaf-site`). Enable **Google Analytics** when asked (this creates the GA4
    property used by Firebase Analytics).
 2. **Build → Firestore Database → Create database** → production mode → pick a region
    close to your audience (e.g. `europe-west` / `us-central`).
-3. **Project settings → Your apps → Web app (</>)** → register `qalam-web`. Copy the
+3. **Project settings → Your apps → Web app (</>)** → register `umberleaf-web`. Copy the
    config values — they map 1:1 onto the `NEXT_PUBLIC_FIREBASE_*` vars in
    [.env.example](.env.example).
 4. Deploy the security rules (they are the entire protection model — do not skip):
@@ -40,7 +40,7 @@ No indexes are needed — the site only ever creates documents.
 
 ### Custom domain
 
-Vercel project → **Domains** → add `qalam.ink` (+ `www` redirect). Update
+Vercel project → **Domains** → add `umberleaf.com` (+ `www` redirect). Update
 `NEXT_PUBLIC_SITE_URL` to match and redeploy — sitemap, robots, RSS, canonical URLs and
 JSON-LD all read from it.
 

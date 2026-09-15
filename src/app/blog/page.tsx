@@ -15,7 +15,7 @@ import { Section, SectionHeading } from "@/shared/ui/section"
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Notes from the desk — essays on craft, the making of Qalam, and the slower side of writing on the internet.",
+    "Notes from the desk: essays on craft, the making of Umberleaf, and the slower side of writing on the internet.",
   alternates: { canonical: "/blog" },
 }
 
@@ -32,7 +32,7 @@ export default function BlogPage() {
           as="h1"
           eyebrow="The blog"
           title="Notes from the desk"
-          description="Essays on craft, the making of Qalam, and the slower side of writing on the internet."
+          description="Essays on craft, the making of Umberleaf, and the slower side of writing on the internet."
         />
 
         {categories.length > 0 ? (

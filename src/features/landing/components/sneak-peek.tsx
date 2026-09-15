@@ -163,7 +163,7 @@ function ReaderVignette() {
       <div className="space-y-3 text-sm leading-[1.9] text-foreground/85">
         <p>
           There is a kind of tiredness that sleep doesn&apos;t answer. It collects in the hours
-          nobody claims — the twenty minutes before a meeting, the platform wait, the kettle&apos;s
+          nobody claims: the twenty minutes before a meeting, the platform wait, the kettle&apos;s
           slow argument with itself.
         </p>
         <p className="rounded-md bg-accent/70 px-2 py-1">

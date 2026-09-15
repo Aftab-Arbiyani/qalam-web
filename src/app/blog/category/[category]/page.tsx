@@ -27,8 +27,8 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const category = categoryFromSlug(slug)
   if (!category) return {}
   return {
-    title: `${category} — Blog`,
-    description: `Posts filed under ${category} on the Qalam blog.`,
+    title: `${category} · Blog`,
+    description: `Posts filed under ${category} on the Umberleaf blog.`,
     alternates: { canonical: `/blog/category/${slug}` },
   }
 }

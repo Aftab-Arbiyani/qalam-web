@@ -5,7 +5,7 @@ import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 
 /**
- * Server-side MDX renderer. Styling comes from the .prose-qalam utility;
+ * Server-side MDX renderer. Styling comes from the .prose-umberleaf utility;
  * only elements needing behavior are overridden here.
  */
 
@@ -46,5 +46,5 @@ export function MdxContent({ source }: { source: string }) {
 
 /** Narrow prose column shared by blog posts and legal pages. */
 export function Prose({ children }: { children: ReactNode }) {
-  return <div className="mx-auto prose-qalam">{children}</div>
+  return <div className="mx-auto prose-umberleaf">{children}</div>
 }

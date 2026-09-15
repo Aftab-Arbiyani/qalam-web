@@ -1,7 +1,7 @@
 rules_version = '2';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Qalam marketing site — Firestore security rules
+// Umberleaf marketing site — Firestore security rules
 //
 // Threat model: the client SDK is fully public; anyone can call it with our
 // (public) config. These rules are the ONLY real enforcement layer.

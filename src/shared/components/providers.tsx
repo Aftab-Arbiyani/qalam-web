@@ -8,7 +8,9 @@ import type { ReactNode } from "react"
  * Client-side context for the whole app.
  *
  * - next-themes drives dark mode via the `.dark` class (no flash: it inlines
- *   a script before hydration).
+ *   a script before hydration). The site opens in light mode for everyone;
+ *   `enableSystem` is off deliberately, so a visitor whose OS is dark still
+ *   lands on light and reaches dark only through the toggle.
  * - LazyMotion + `m` components keep framer-motion's initial payload small;
  *   `strict` makes accidental `motion.*` imports a build-time error.
  * - MotionConfig honours the visitor's prefers-reduced-motion setting for
@@ -16,7 +18,12 @@ import type { ReactNode } from "react"
  */
 export function Providers({ children }: { children: ReactNode }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem={false}
+      disableTransitionOnChange
+    >
       <LazyMotion features={domAnimation} strict>
         <MotionConfig reducedMotion="user">{children}</MotionConfig>
       </LazyMotion>

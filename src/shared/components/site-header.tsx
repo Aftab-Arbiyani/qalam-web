@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
 import { trackEvent } from "@/lib/firebase/analytics"
-import { QalamWordmark } from "@/shared/components/brand/qalam-mark"
+import { UmberleafWordmark } from "@/shared/components/brand/umberleaf-mark"
 import { ThemeToggle } from "@/shared/components/theme-toggle"
 import { cn } from "@/shared/lib/utils"
 import { Button } from "@/shared/ui/button"
@@ -53,9 +53,9 @@ export function SiteHeader() {
         <Link
           href="/"
           className="rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-          aria-label="Qalam — home"
+          aria-label="Umberleaf home"
         >
-          <QalamWordmark />
+          <UmberleafWordmark />
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">

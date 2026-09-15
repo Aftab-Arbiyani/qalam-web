@@ -14,7 +14,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    default: `${siteConfig.name} · ${siteConfig.tagline}`,
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.description,
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} — ${siteConfig.tagline}`,
+        alt: `${siteConfig.name} · ${siteConfig.tagline}`,
       },
     ],
   },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: siteConfig.social.twitterHandle,
     creator: siteConfig.social.twitterHandle,
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.description,
     images: ["/og.png"],
   },
@@ -57,10 +57,10 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fbf8f3" },
-    { media: "(prefers-color-scheme: dark)", color: "#161210" },
-  ],
+  // One colour, not a prefers-color-scheme pair: the site now opens in light mode
+  // regardless of the OS setting, so keying this to the OS would wrap a light page
+  // in dark browser chrome for anyone running a dark system.
+  themeColor: "#fbf8f3",
   width: "device-width",
   initialScale: 1,
 }

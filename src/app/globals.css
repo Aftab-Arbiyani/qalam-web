@@ -4,7 +4,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ────────────────────────────────────────────────────────────────────────────
-   Qalam design tokens
+   Umberleaf design tokens
    Warm, literary, restrained. Terracotta #9E4B28 is the single accent.
    Light = warm cream paper + warm ink. Dark = deep ink + cream text.
    All pairings checked for WCAG AA contrast.
@@ -237,7 +237,7 @@
 
 /* ── Literary prose (blog / legal pages) ──────────────────────────────────── */
 
-@utility prose-qalam {
+@utility prose-umberleaf {
   max-width: 42rem;
   font-size: 1.0625rem;
   line-height: 1.85;

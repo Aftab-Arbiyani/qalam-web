@@ -4,10 +4,11 @@ import { m } from "framer-motion"
 import { Sparkles } from "lucide-react"
 
 import { easeOutSoft } from "@/shared/animations/presets"
+import { UmberleafMark } from "@/shared/components/brand/umberleaf-mark"
 
 const MANUSCRIPT_LINES = [
   "The lighthouse keeper's daughter learned to read",
-  "by the sweep of the lamp — four seconds of light,",
+  "by the sweep of the lamp, four seconds of light,",
   "four of dark. Her father said the sea taught",
   "patience; she suspected it taught rhythm,",
 ] as const
@@ -60,7 +61,7 @@ export function HeroVisual() {
           className="mt-8 flex items-center justify-between border-t pt-4 text-xs text-muted-foreground"
         >
           <span>412 words · saved a moment ago</span>
-          <span className="font-display italic">ق</span>
+          <UmberleafMark variant="glyph" size={16} label={null} />
         </m.div>
       </m.div>
 

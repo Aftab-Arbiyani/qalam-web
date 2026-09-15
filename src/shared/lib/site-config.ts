@@ -3,21 +3,19 @@
  * Everything SEO-related (metadata, JSON-LD, sitemap, RSS) reads from here.
  */
 export const siteConfig = {
-  name: "Qalam",
-  /** The Arabic word for "pen" — the brand mark is the letter qāf (ق). */
-  nameArabic: "قلم",
+  name: "Umberleaf",
   tagline: "A quieter home for the written word",
   description:
-    "Qalam is a writing platform for people who take words seriously — a focused editor, a craft-first companion, and readers who actually read. Coming soon. Join the waitlist.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://qalam.ink",
+    "Umberleaf is a writing platform for people who take words seriously: a focused editor, a craft-first companion, and readers who actually read. Coming soon. Join the waitlist.",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://umberleaf.com",
   /** Contact + social identity. Update handles before launch. */
-  email: "hello@qalam.ink",
-  pressEmail: "press@qalam.ink",
+  email: "hello@umberleaf.com",
+  pressEmail: "press@umberleaf.com",
   social: {
-    twitter: "https://twitter.com/qalam",
-    twitterHandle: "@qalam",
-    instagram: "https://instagram.com/qalam.ink",
-    github: "https://github.com/qalam",
+    twitter: "https://twitter.com/umberleaf",
+    twitterHandle: "@umberleaf",
+    instagram: "https://instagram.com/umberleaf",
+    github: "https://github.com/umberleaf",
   },
   keywords: [
     "writing platform",
@@ -28,7 +26,7 @@ export const siteConfig = {
     "essays",
     "fiction",
     "poetry",
-    "Qalam",
+    "Umberleaf",
   ],
   /** Used by JSON-LD Organization schema. */
   foundingYear: 2026,
