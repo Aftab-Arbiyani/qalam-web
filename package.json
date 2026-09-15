@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "check:contract": "node tool/check-rules-contract.mjs",
     "brand:sync": "bash tool/brand/sync.sh",
     "brand:check": "bash tool/brand/sync.sh --check"
   },

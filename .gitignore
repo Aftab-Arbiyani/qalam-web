@@ -32,6 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...except the template. It holds no values — only the names of the variables
+# the app reads — and both README and DEPLOYMENT.md tell a new checkout to copy
+# it. Ignored, it existed on exactly one machine.
+!.env.example
 
 # vercel
 .vercel
