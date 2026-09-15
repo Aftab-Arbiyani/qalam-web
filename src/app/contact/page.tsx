@@ -48,7 +48,7 @@ export default function ContactPage() {
           description="A small team reads this inbox. Expect a human reply, at human speed."
         />
 
-        <RevealGroup className="grid gap-5 sm:grid-cols-3" stagger={0.08}>
+        <RevealGroup className="grid gap-5 sm:grid-cols-3">
           {CHANNELS.map((channel) => (
             <RevealItem key={channel.title} className="h-full">
               <Card className="h-full text-center">

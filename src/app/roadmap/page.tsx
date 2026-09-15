@@ -86,10 +86,7 @@ export default function RoadmapPage() {
           description="Dates are seasons, not promises carved in stone. When reality and the roadmap disagree, we update the roadmap, here, in public."
         />
 
-        <RevealGroup
-          className="relative flex flex-col gap-10 border-l-2 border-border pl-8"
-          stagger={0.12}
-        >
+        <RevealGroup className="relative flex flex-col gap-10 border-l-2 border-border pl-8">
           {PHASES.map((phase) => (
             <RevealItem key={phase.title} className="relative">
               {/* Timeline dot */}

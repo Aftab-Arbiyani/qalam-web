@@ -1,79 +1,52 @@
-"use client"
+import type { CSSProperties, ReactNode } from "react"
 
-import { m } from "framer-motion"
-import type { ReactNode } from "react"
+import { cn } from "@/shared/lib/utils"
 
-import { fadeUp, revealViewport, staggerContainer } from "@/shared/animations/presets"
+/**
+ * Scroll-reveal wrappers.
+ *
+ * These are plain server components: the entrance lives entirely in CSS (see
+ * the "Entrances" block in globals.css), so revealed content is present *and
+ * visible* in the static HTML instead of waiting on hydration. Nothing here
+ * ships JavaScript, and nothing here can hide content if a script fails.
+ */
 
 interface RevealProps {
   children: ReactNode
   className?: string
-  /** Extra delay (s) before the entrance starts. */
+  /**
+   * Extra delay (s) before the entrance starts.
+   *
+   * Only applies where the browser lacks scroll-driven animations and every
+   * reveal therefore runs on load. With a view timeline the element's own
+   * scroll position already sequences it, and the delay is ignored.
+   */
   delay?: number
   /** Render as a different HTML element. Defaults to div. */
   as?: "div" | "section" | "span" | "li"
 }
 
-/**
- * Scroll-reveal wrapper: fades content up once when it enters the viewport.
- *
- * A client component by necessity, but children passed from server components
- * remain server-rendered — only the wrapper hydrates.
- */
-export function Reveal({ children, className, delay = 0, as = "div" }: RevealProps) {
-  const Tag = m[as]
+export function Reveal({ children, className, delay = 0, as: Tag = "div" }: RevealProps) {
   return (
     <Tag
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={revealViewport}
-      variants={{
-        hidden: fadeUp.hidden,
-        visible: {
-          ...fadeUp.visible,
-          transition: {
-            ...(typeof fadeUp.visible === "object" && "transition" in fadeUp.visible
-              ? fadeUp.visible.transition
-              : {}),
-            delay,
-          },
-        },
-      }}
+      className={cn("reveal", className)}
+      style={delay ? ({ "--reveal-delay": `${delay}s` } as CSSProperties) : undefined}
     >
       {children}
     </Tag>
   )
 }
 
-interface RevealGroupProps {
-  children: ReactNode
-  className?: string
-  /** Seconds between each child's entrance. */
-  stagger?: number
-}
-
 /**
- * Staggered scroll-reveal: each <RevealItem> child enters in sequence.
+ * Staggered scroll-reveal: each direct child enters in sequence.
+ *
+ * The cascade is driven by :nth-child in CSS, so the stagger is uniform across
+ * the site and needs no per-call-site tuning.
  */
-export function RevealGroup({ children, className, stagger = 0.08 }: RevealGroupProps) {
-  return (
-    <m.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={revealViewport}
-      variants={staggerContainer(stagger)}
-    >
-      {children}
-    </m.div>
-  )
+export function RevealGroup({ children, className }: { children: ReactNode; className?: string }) {
+  return <div className={cn("reveal-group", className)}>{children}</div>
 }
 
 export function RevealItem({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <m.div className={className} variants={fadeUp}>
-      {children}
-    </m.div>
-  )
+  return <div className={className}>{children}</div>
 }
