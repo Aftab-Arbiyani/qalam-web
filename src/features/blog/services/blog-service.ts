@@ -67,13 +67,24 @@ export function getPostBySlug(slug: string): Post | null {
   return null
 }
 
-/** Distinct categories, ordered by frequency (most posts first). */
+/**
+ * Distinct categories, ordered by frequency (most posts first).
+ *
+ * Grouped case-insensitively, because that is how `getPostsByCategory` and
+ * `categoryFromSlug` match. Counting "Product" and "product" separately would
+ * emit the same slug twice from `generateStaticParams` — two static pages at
+ * one URL, the second silently winning. The first spelling seen is kept as the
+ * display label.
+ */
 export function getCategories(): string[] {
-  const counts = new Map<string, number>()
+  const counts = new Map<string, { label: string; count: number }>()
   for (const post of getAllPosts()) {
-    counts.set(post.category, (counts.get(post.category) ?? 0) + 1)
+    const key = post.category.toLowerCase()
+    const existing = counts.get(key)
+    if (existing) existing.count += 1
+    else counts.set(key, { label: post.category, count: 1 })
   }
-  return [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([category]) => category)
+  return [...counts.values()].sort((a, b) => b.count - a.count).map((entry) => entry.label)
 }
 
 export function getPostsByCategory(category: string): Post[] {

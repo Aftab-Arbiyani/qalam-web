@@ -155,11 +155,31 @@
   @keyframes fade-up {
     from {
       opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in-right {
+    from {
+      opacity: 0;
+      transform: translate(16px, 8px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
     }
   }
 
@@ -232,6 +252,118 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
+  }
+}
+
+/* ── Entrances ────────────────────────────────────────────────────────────── */
+
+/*
+  The site's entrance animations are CSS, not JavaScript, and that is a
+  correctness decision rather than a performance one.
+
+  The previous implementation drove every reveal with framer-motion's
+  `initial="hidden"`, which serializes `style="opacity:0"` into the static HTML.
+  Thirty elements on `/` — the `<h1>` and the whole waitlist section among them —
+  shipped invisible and stayed invisible until the JS bundle downloaded,
+  hydrated, and an IntersectionObserver fired. That gates LCP on hydration and
+  turns any script failure into a blank page.
+
+  Here the markup carries no inline opacity, so the content is visible the
+  moment the HTML lands. Where the browser supports scroll-driven animations the
+  reveal is tied to the element's own scroll position; where it doesn't, the
+  animation simply runs on load. Both paths end at opacity 1, and a stylesheet
+  that never arrives leaves everything visible.
+
+  `--i` is the stagger index, set by :nth-child below rather than by script.
+*/
+
+.reveal,
+.reveal-group > *,
+.stagger-in > * {
+  animation: fade-up 0.65s var(--ease-out-soft) both;
+  animation-delay: calc(var(--reveal-delay, 0s) + var(--i, 0) * var(--stagger-step, 90ms));
+}
+
+.reveal-group,
+.stagger-in {
+  /* Scroll-driven stagger is expressed as a range offset (a percentage of the
+     element's entry), time-based stagger as a delay. Both read `--i`. */
+  --stagger-range: 5%;
+}
+
+.reveal-group > *:nth-child(2),
+.stagger-in > *:nth-child(2) {
+  --i: 1;
+}
+.reveal-group > *:nth-child(3),
+.stagger-in > *:nth-child(3) {
+  --i: 2;
+}
+.reveal-group > *:nth-child(4),
+.stagger-in > *:nth-child(4) {
+  --i: 3;
+}
+.reveal-group > *:nth-child(5),
+.stagger-in > *:nth-child(5) {
+  --i: 4;
+}
+.reveal-group > *:nth-child(6),
+.stagger-in > *:nth-child(6) {
+  --i: 5;
+}
+.reveal-group > *:nth-child(7),
+.stagger-in > *:nth-child(7) {
+  --i: 6;
+}
+/* Beyond eight, everything shares the last step — a longer cascade reads as lag. */
+.reveal-group > *:nth-child(n + 8),
+.stagger-in > *:nth-child(n + 8) {
+  --i: 7;
+}
+
+@supports (animation-timeline: view()) {
+  /* `.stagger-in` is deliberately excluded: it is the above-the-fold entrance,
+     which must play on load and never wait for a scroll that may not happen. */
+  .reveal,
+  .reveal-group > * {
+    animation-timeline: view();
+    animation-range: entry calc(var(--i, 0) * var(--stagger-range, 0%)) cover
+      calc(32% + var(--i, 0) * var(--stagger-range, 0%));
+  }
+}
+
+/* One-off entrances for the hero illustration, sequenced with inline delays. */
+.fade-in {
+  animation: fade-in 0.5s var(--ease-out-soft) both;
+}
+.fade-in-up {
+  animation: fade-up 0.7s var(--ease-out-soft) both;
+}
+.fade-in-right {
+  animation: fade-in-right 0.7s var(--ease-out-soft) both;
+}
+
+/*
+  Keep this block LAST among the entrance rules. It matches the specificity of
+  every rule above it, so source order is the only thing deciding the winner —
+  declare a new entrance class below this point and it silently opts itself out
+  of reduced motion.
+*/
+@media (prefers-reduced-motion: reduce) {
+  /*
+    Required, and not covered by the blanket rule in @layer base: that rule
+    collapses `animation-duration`, which a scroll-driven animation ignores
+    entirely. Without this, a reduced-motion visitor in a browser that supports
+    view timelines would be left staring at opacity 0. Removing the animation
+    name is what actually settles the element at its natural, visible state.
+  */
+  .reveal,
+  .reveal-group > *,
+  .stagger-in > *,
+  .fade-in,
+  .fade-in-up,
+  .fade-in-right {
+    animation-name: none;
   }
 }
 

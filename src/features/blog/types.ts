@@ -6,7 +6,19 @@ export const postFrontmatterSchema = z.object({
   description: z.string().min(1).max(300),
   /** ISO date, e.g. 2026-07-01 */
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "date must be YYYY-MM-DD"),
-  category: z.string().min(1),
+  /**
+   * Becomes a URL segment via `categoryToSlug`, so it is constrained to
+   * characters that survive one: letters, digits, spaces and hyphens. A
+   * category like "Q&A" would otherwise generate `/blog/category/q&a`, which
+   * truncates at the ampersand and 404s. Failing at build time is the point.
+   */
+  category: z
+    .string()
+    .min(1)
+    .regex(
+      /^[A-Za-z0-9][A-Za-z0-9 -]*$/,
+      "category must be letters, digits, spaces or hyphens (it becomes a URL segment)",
+    ),
   tags: z.array(z.string()).default([]),
   featured: z.boolean().default(false),
   author: z.string().min(1),

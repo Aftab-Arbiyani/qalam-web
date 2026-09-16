@@ -4,7 +4,7 @@ import { AnimatePresence, m } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { trackEvent } from "@/lib/firebase/analytics"
 import { UmberleafWordmark } from "@/shared/components/brand/umberleaf-mark"
@@ -27,6 +27,7 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
+  const toggleRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -39,6 +40,20 @@ export function SiteHeader() {
   useEffect(() => {
     setMenuOpen(false)
   }, [pathname])
+
+  // Escape closes the menu and returns focus to the control that opened it —
+  // without the focus move, a keyboard user is left on a button that has just
+  // been described as collapsed, with no idea where they are.
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return
+      setMenuOpen(false)
+      toggleRef.current?.focus()
+    }
+    document.addEventListener("keydown", onKeyDown)
+    return () => document.removeEventListener("keydown", onKeyDown)
+  }, [menuOpen])
 
   return (
     <header
@@ -87,11 +102,15 @@ export function SiteHeader() {
             <Link href="/#waitlist">Join the waitlist</Link>
           </Button>
           <Button
+            ref={toggleRef}
             variant="ghost"
             size="icon"
             className="md:hidden"
             aria-expanded={menuOpen}
-            aria-controls="mobile-nav"
+            // Only while the menu exists: AnimatePresence unmounts it when
+            // closed, and aria-controls pointing at a missing id is a dangling
+            // reference that assistive tech reports as broken markup.
+            aria-controls={menuOpen ? "mobile-nav" : undefined}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             onClick={() => setMenuOpen((open) => !open)}
           >

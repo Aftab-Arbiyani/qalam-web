@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
 import type { ReactNode } from "react"
 
@@ -7,7 +8,7 @@ import { SiteFooter } from "@/shared/components/site-footer"
 import { SiteHeader } from "@/shared/components/site-header"
 import { fraunces, inter } from "@/shared/lib/fonts"
 import { JsonLd, organizationSchema, websiteSchema } from "@/shared/lib/seo/json-ld"
-import { siteConfig } from "@/shared/lib/site-config"
+import { ogImage, siteConfig } from "@/shared/lib/site-config"
 
 import "./globals.css"
 
@@ -32,14 +33,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.description,
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: `${siteConfig.name} · ${siteConfig.tagline}`,
-      },
-    ],
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
@@ -47,7 +41,7 @@ export const metadata: Metadata = {
     creator: siteConfig.social.twitterHandle,
     title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.description,
-    images: ["/og.png"],
+    images: [ogImage],
   },
   robots: {
     index: true,
@@ -83,6 +77,20 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           <SiteFooter />
           <AnalyticsTracker />
         </Providers>
+        {/*
+          Vercel Analytics — traffic shape (views, referrers, countries, devices).
+
+          Cookieless and identifier-free, so unlike GA4 it needs no consent gate,
+          and it is served from our own origin (/_vercel/insights/*) rather than
+          a third party. It only reports from a Vercel deployment; locally and in
+          any other host it is inert.
+
+          It does NOT replace `trackEvent` — that remains the typed, single place
+          product events are defined. This measures reach; that measures
+          behaviour. If these two ever need to agree, fan out inside `trackEvent`
+          rather than sprinkling a second call site next to each existing one.
+        */}
+        <Analytics />
         <JsonLd schema={organizationSchema()} />
         <JsonLd schema={websiteSchema()} />
       </body>

@@ -1,0 +1,53 @@
+name: CI
+
+# Until now Vercel's build was the only gate, and it checks exactly one thing:
+# that the site compiles. Formatting, lint, brand-asset drift and the
+# client/rules contract were all enforced by nothing.
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Format
+        run: pnpm format:check
+
+      # Verify-only: it compares the vendored copies of the mark against each
+      # other and never reaches for the generator, which lives outside the repo.
+      - name: Brand assets in sync
+        run: pnpm brand:check
+
+      # The one check whose absence is invisible in production — a rules
+      # mismatch is reported to visitors as success. See tool/check-rules-contract.mjs.
+      - name: Client ↔ firestore.rules contract
+        run: pnpm check:contract
+
+      - name: Build
+        run: pnpm build

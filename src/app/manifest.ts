@@ -10,7 +10,10 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/",
     display: "browser",
     background_color: "#fbf8f3",
-    theme_color: "#9e4b28",
+    // Must match `viewport.themeColor` in layout.tsx — the paper cream, not the
+    // terracotta accent. Two different values means the browser chrome changes
+    // colour depending on whether the page was opened from the home screen.
+    theme_color: "#fbf8f3",
     icons: [
       {
         src: "/brand/umberleaf-tile.svg",

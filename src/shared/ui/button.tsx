@@ -42,6 +42,12 @@ interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   /** Render the child element instead (e.g. a <Link>) while keeping styles. */
   asChild?: boolean
+  /**
+   * React 19 passes `ref` to function components as an ordinary prop, but
+   * `ButtonHTMLAttributes` doesn't declare it — so callers that need the node
+   * (to restore focus, to measure) have to be granted it explicitly.
+   */
+  ref?: React.Ref<HTMLButtonElement>
 }
 
 function Button({ className, variant, size, asChild = false, ...props }: ButtonProps) {

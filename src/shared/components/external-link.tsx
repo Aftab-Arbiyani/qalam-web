@@ -12,14 +12,20 @@ interface ExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 
 /** Outbound anchor with analytics + safe rel defaults. */
-export function ExternalLink({ href, location, children, ...props }: ExternalLinkProps) {
+export function ExternalLink({ href, location, children, onClick, ...props }: ExternalLinkProps) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackEvent("outbound_link", { url: href, location })}
+      // Spread first, then handle the click: a caller's `onClick` arriving in
+      // `...props` would otherwise replace the tracking call outright rather
+      // than run alongside it.
       {...props}
+      onClick={(event) => {
+        trackEvent("outbound_link", { url: href, location })
+        onClick?.(event)
+      }}
     >
       {children}
     </a>

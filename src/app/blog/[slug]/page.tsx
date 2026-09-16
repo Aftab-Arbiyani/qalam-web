@@ -8,6 +8,7 @@ import { ReadTracker } from "@/features/blog/components/read-tracker"
 import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/features/blog/services/blog-service"
 import { NewsletterForm } from "@/features/newsletter/components/newsletter-form"
 import { articleSchema, breadcrumbSchema, JsonLd } from "@/shared/lib/seo/json-ld"
+import { ogImage } from "@/shared/lib/site-config"
 import { Badge } from "@/shared/ui/badge"
 import { Container } from "@/shared/ui/container"
 import { Section } from "@/shared/ui/section"
@@ -39,11 +40,15 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
       publishedTime: `${post.date}T00:00:00.000Z`,
       authors: [post.author],
       tags: [...post.tags],
+      // Declaring `openGraph` here replaces the root layout's entirely, so the
+      // image has to be restated — posts are the most-shared pages on the site.
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
+      images: [ogImage],
     },
   }
 }

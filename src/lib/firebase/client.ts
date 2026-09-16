@@ -14,23 +14,55 @@ import { firebaseConfig, isFirebaseConfigured } from "@/lib/firebase/config"
 let appPromise: Promise<FirebaseApp> | null = null
 let dbPromise: Promise<Firestore> | null = null
 
+/**
+ * Cache the promise, but never a rejection.
+ *
+ * A memoised rejected promise is permanent: one failed chunk load on a flaky
+ * connection would poison every later submit for the rest of the session, and
+ * the visitor would be told "something went wrong on our side" until they
+ * reloaded the page. Clearing the slot on failure makes the next attempt a
+ * genuine retry.
+ */
+function once<T>(
+  slot: () => Promise<T> | null,
+  store: (value: Promise<T> | null) => void,
+  create: () => Promise<T>,
+): Promise<T> {
+  const existing = slot()
+  if (existing) return existing
+  const created = create().catch((error: unknown) => {
+    store(null)
+    throw error
+  })
+  store(created)
+  return created
+}
+
 export function getFirebaseApp(): Promise<FirebaseApp> {
   if (!isFirebaseConfigured) {
     return Promise.reject(new FirebaseNotConfiguredError())
   }
-  appPromise ??= import("firebase/app").then(({ getApps, initializeApp }) => {
-    const existing = getApps()
-    return existing.length > 0 ? existing[0] : initializeApp(firebaseConfig)
-  })
-  return appPromise
+  return once(
+    () => appPromise,
+    (value) => (appPromise = value),
+    async () => {
+      const { getApps, initializeApp } = await import("firebase/app")
+      const existing = getApps()
+      return existing.length > 0 ? existing[0] : initializeApp(firebaseConfig)
+    },
+  )
 }
 
 export function getDb(): Promise<Firestore> {
-  dbPromise ??= getFirebaseApp().then(async (app) => {
-    const { getFirestore } = await import("firebase/firestore")
-    return getFirestore(app)
-  })
-  return dbPromise
+  return once(
+    () => dbPromise,
+    (value) => (dbPromise = value),
+    async () => {
+      const app = await getFirebaseApp()
+      const { getFirestore } = await import("firebase/firestore")
+      return getFirestore(app)
+    },
+  )
 }
 
 /** Thrown when env vars are absent (previews / local dev without Firebase). */

@@ -16,7 +16,7 @@ export function WhyUmberleaf() {
           description={whyUmberleaf.description}
         />
 
-        <RevealGroup className="flex flex-col gap-3" stagger={0.09}>
+        <RevealGroup className="flex flex-col gap-3">
           {whyUmberleaf.rows.map((row) => (
             <RevealItem key={row.here}>
               <div className="grid items-center gap-2 rounded-xl border bg-card p-5 sm:grid-cols-[1fr_auto_1fr] sm:gap-6">

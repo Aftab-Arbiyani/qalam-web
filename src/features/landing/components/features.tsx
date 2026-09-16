@@ -15,7 +15,7 @@ export function Features() {
           description={features.description}
         />
 
-        <RevealGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" stagger={0.07}>
+        <RevealGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {features.items.map((feature) => (
             <RevealItem key={feature.title} className="h-full">
               <Card className="group h-full hover:shadow-card-hover">
